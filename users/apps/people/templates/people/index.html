@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Users Assignment</title>
+    <link rel="stylesheet"
+    8href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+  </head>
+  <body>
+    <h1>User Stuff</h1>
+    <table class="u-full-width">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Created At</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%for user in users%}
+          <tr>
+            <td>{{ user.id }}</td>
+            <td><a href="/users/show/{{user.id}}">{{ user.first_name }} {{ user.last_name }}</a></td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.created_at }}</td>
+            <td><a href="/users/show/{{user.id}}">show</a> <a href="/users/edit/{{user.id}}">edit</a> <a href="/users/delete/{{user.id}}">delete</a></td>
+          </tr>
+          {%endfor%}
+        </tbody>
+      </table>
+      <a href="/users/new">Add a User</a>
+  </body>
+</html>

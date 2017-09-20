@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>User {{user.first_name}} {{user.last_name}}</title>
+  </head>
+  <body>
+    <h4>{{user.first_name}} {{user.last_name}}</h4>
+    <p>{{user.email}}</p>
+    <p>{{user.created_at}}</p>
+    <a href="/users/edit/{{user.id}}">Edit</a> | <a href="/users/delete/{{user.id}}">Delete</a> | <a href="/users">Back</a>
+  </body>
+</html>
