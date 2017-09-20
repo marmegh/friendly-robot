@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Confirm Request</title>
+  </head>
+  <body>
+    <h1>Are you sure you want to delete the following course?</h1>
+    <p>{{course.name}}</p>
+    <p>{{course.description}}</p>
+    <p>{{course.created_at}}</p>
+    <form action="/" method="post">
+      {% csrf_token %}
+      <input type="submit" name="decline" value="No">
+    </form>
+    <form action="/deletion/{{course.id}}" method="post">
+      {% csrf_token %}
+      <input type="submit" name="confirm" value="Yes, Delete this Entry">
+    </form>
+  </body>
+</html>
