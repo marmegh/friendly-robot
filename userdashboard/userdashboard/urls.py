@@ -17,5 +17,6 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^', include('apps.logreg.urls')),
+    url(r'^udb', include('apps.dashboard.urls', namespace = 'udb')),
+    url(r'^', include('apps.logreg.urls', namespace = 'logreg')),
 ]
