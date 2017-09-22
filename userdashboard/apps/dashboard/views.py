@@ -22,7 +22,7 @@ def register(request):
     else:
         form = RegistrationForm()
 
-    return render(request, '/dashboard/registration.html', {'form': form})
+    return render(request, 'dashboard/registration.html', {'form': form})
 def create(request):
     #process registration form to add an account
     return HttpResponse('testing registration')
