@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>User Dashboard Assignment</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css ">
+  </head>
+  <body>
+    <nav class='navbar navbar-default'>
+      <h1>Test App</h1>
+      <a href="/">Home</a>
+      <a class = 'navbar-right' href="{%url 'users:signin'%}">Sign in</a>
+    </nav>
+    <h1>Welcome to the Test</h1>
+    <p>We're going to build a cool application using a MVC framework!
+      This application was built with the Village88 folks!</p>
+    <form action="{%url 'users:new'%}" method="post">
+        {% csrf_token %}
+      <input type="submit" name="start" value="Start">
+    </form>
+
+  </body>
+</html>

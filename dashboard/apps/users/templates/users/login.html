@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>User Dashboard Assignment</title>
+  </head>
+  <body>
+    {% if messages %}
+      <ul class="messages">
+          {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+              {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+              {{ message }}
+          </li>
+          {% endfor %}
+      </ul>
+    {% endif %}
+    <h1>Login</h1>
+    <form action="{% url 'users:login' %}" method="post">
+      {% csrf_token %}
+      {{login.as_p}}
+      <!-- <p>Email: <input type="email" name="email"></p>
+      <p>Password: <input type="password" name="pwd"></p> -->
+      <input type="submit" name = 'login' value="Submit" />
+    </form>
+  </body>
+</html>

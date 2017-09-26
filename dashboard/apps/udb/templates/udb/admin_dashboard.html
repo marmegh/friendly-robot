@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>User Dashboard Assignment</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css ">
+  </head>
+  <body>
+    <nav class='navbar navbar-default'>
+      <h1>User Dashboard</h1>
+      <a href="/">Home</a>
+      <a class = 'navbar-right' href="{%url 'users:logout'%}">Sign Out</a>
+    </nav>
+    <h1>Welcome Back {{name}}</h1>
+    <h2>All Users</h2>
+    <table class = "table">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Joined</th>
+        <th>User Level</th>   
+        <th>Actions</th>     
+      {%for user in users%}
+      </tr>
+        <td>{{user.id}}</td>
+        <td><a href="{% url 'users:show' user.id%}">{{user.first_name}} {{user.last_name}}</a></td>
+        <td>{{user.email}}</td>
+        <td>{{user.created_at}}</td>
+        {%if user.user_level > 5%}
+        <td>admin</td>
+        {%else%}
+        <td>normal</td>
+        {%endif%}
+        <td><a href="/users/edit/{{user.id}}">edit</a> <a href="/users/delete/{{user.id}}">delete</a></td>
+      </tr>
+      {%endfor%}
+    </table>
+    <a href="/logout">Logout</a>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {%load static%}
+    <meta charset="utf-8">
+    <title>User Dashboard Assignment</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css ">
+  </head>
+  <body>
+    <nav class='navbar navbar-default'>
+      <h1>User Dashboard</h1>
+      <a href="/dashboard">Home</a>
+      <a href="{% url 'users:show' id%}">My Profile</a>
+      <a class = 'navbar-right' href="{%url 'users:logout'%}">Sign Out</a>
+    </nav>
+    <h2>{{user.first_name}} {{user.last_name}}</h2>
+    <h5>Registered: {{user.created_at}}</h5>
+    <h5>User ID: {{user.id}}</h5>
+    <h5>Email: {{user.email}}</h5>
+    <h5>Description: {{user.description}}</h5>
+      
+    <form action="post" method="post">
+      {% csrf_token %}
+      <textarea name="post" cols="90" rows="5"></textarea>
+      <input type="hidden" name = "user_id" value = "{{user.id}}">
+      <p><input type="submit" name="submit"></p>
+    </form>
+    {%for post in posts reversed%}
+    <p >{{post.post}} - {{post.poster.first_name}} {{post.poster.last_name}} at {{post.created_at}}</p>
+        <div class = 'container'>
+          {%for comment in comments%}
+            {%if comment.post.id == post.id%}
+            <p>{{comment.comment}} - {{comment.commenter.first_name}} {{comment.commenter.last_name}} at {{comment.created_at}}</p>
+            {%endif%}
+          {%endfor%}
+        </div>
+          <form action="comment" method="post">
+            {% csrf_token %}
+            <textarea name="comment" cols="90" rows="2"></textarea>
+            <input type="hidden" name = "post_id" value = "{{post.id}}">
+            <input type="hidden" name = "user_id" value = "{{user.id}}">
+            <p><input type="submit" name="submit"></p>
+          </form>
+    {%endfor%}
+  </body>
+</html>
