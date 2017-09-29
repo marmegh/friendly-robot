@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Belt Reviewer</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+  </head>
+  <body>
+    <div class="container">
+      <nav class = 'row'>
+        <div class="eight columns">
+          <p> </p>
+        </div>
+        <div class="two columns">
+          <a href="/dashboard">Home</a>
+        </div>
+        <div class="two columns">
+          <a href="/logout">Logout</a>
+        </div>
+      </nav>
+      <h5>Add a New Book and Review</h5>
+      {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+          {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+          {{ message }}
+          </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      <form action="/books/create" method="POST">
+        {% csrf_token %}
+        <h6>Book Title: <input type="text" name="title"></h6>
+        <h6>Author</h6>
+        <p>Choose from the list:
+          <select name="author">
+          <option value=0>select an author</option>
+          {%for author in authors%}
+          <option value={{author.id}}>{{author.name}}</option>
+          {%endfor%}
+          </select>
+        <p>
+        <p>Or add a new author: <input type="text" name="new_author"><p>
+        <h6>Review:</h6> <textarea name="review" rows="8" cols="80"></textarea>
+        <h6>Rating:
+          <select name="rating">
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5</option>
+          </select> stars
+        </h6>
+        <p><input type="submit" name="submit" value="submit"></p>
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Login Registration Assignment</title>
+    <link rel="stylesheet"
+    8href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+  </head>
+  <body>
+    {% if messages %}
+      <ul class="messages">
+          {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+              {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+              {{ message }}
+          </li>
+          {% endfor %}
+      </ul>
+    {% endif %}
+    <h1>Register</h1>
+    <form action="{% url 'users:create' %}" method="post">
+      {% csrf_token %}
+      {{register.as_p}}
+      <!-- <p>First Name: <input type="text" name="first" value=""></p>
+      <p>Last Name: <input type="text" name="last" value=""></p>
+      <p>Email: <input type="email" name="email" value=""></p>
+      <p>Password: <input type="password" name="pwd" value=""></p>
+      <p>Confirm Password: <input type="password" name="cpwd" value=""></p> -->
+      <input type="submit" name = 'register' value="Submit" />
+    </form>
+    <h1>Login</h1>
+    <form action="{% url 'users:login' %}" method="post">
+      {% csrf_token %}
+      {{login.as_p}}
+      <!-- <p>Email: <input type="email" name="email"></p>
+      <p>Password: <input type="password" name="pwd"></p> -->
+      <input type="submit" name = 'login' value="Submit" />
+    </form>
+  </body>
+</html>
