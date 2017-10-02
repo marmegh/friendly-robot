@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Survey Assignment</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+  </head>
+  <body>
+    <div class="container">
+      <p>Thanks for submitting the form. You have submitted the form {{count}} times now.</p>
+      <h6>Name: {{name}}</h6>
+      <h6>Location: {{location}}</h6>
+      <h6>Favorite Language: {{language}}</h6>
+      <h6>Comment: {{comment}}</h6>
+      <form action="/" method="post">
+        {% csrf_token %}
+        <div class = 'row'>
+          <a href="/reset">Reset</a>
+          <div class = 'one-half column'><input type="submit" name="submit" value="back"></div>
+        </div>
+      </form>
+  </body>
+</html>

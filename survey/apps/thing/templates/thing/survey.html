@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Survey Assignment</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+  </head>
+  <body>
+      <form action="/process" method="post">
+        {% csrf_token %}
+        <p>Name: <input type="text" name="name"></p>
+        <p>Location:
+          <select name="location">
+            <option value="Silicon Valley">Silicon Valley</option>
+            <option value="Seattle">Seattle</option>
+            <option value="Tulsa">Tulsa</option>
+            <option value="Los Angeles">Los Angeles</option>
+            <option value="Dallas">Dallas</option>
+            <option value="Washington, DC">Washington, DC</option>
+            <option value="Chicago">Chicago</option>
+            <option value="Burkley">Burkley</option>
+            <option value="Orange County">Orange County</option>
+          </select>
+        </p>
+        <p>Favorite Language:
+          <select name="language">
+            <option value="JavaScript">JavaScript</option>
+            <option value="Python">Python</option>
+            <option value="Java">Java</option>
+            <option value="C">C</option>
+            <option value="C++">C++</option>
+            <option value="C#">C #</option>
+            <option value="lolcat">lolcat</option>
+          </select>
+        </p>
+        <p>Comment: <textarea name="comment" cols="90" rows="10"></textarea></p>
+        <p><input type="submit" name="submit" value="submit"></p>
+      </form>
+  </body>
+</html>
